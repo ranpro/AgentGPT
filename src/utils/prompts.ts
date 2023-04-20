@@ -13,6 +13,8 @@ export const createModel = (settings: ModelSettings) =>
     modelName:
       settings.customModelName === "" ? GPT_35_TURBO : settings.customModelName,
     maxTokens: 400,
+  },{
+    basePath: process.env.OPENAI_API_URL
   });
 
 export const startGoalPrompt = new PromptTemplate({

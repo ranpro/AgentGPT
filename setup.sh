@@ -10,12 +10,15 @@ is_valid_sk_key() {
 echo -n "Enter your OpenAI Key (eg: sk...) or press enter to continue with no key: "
 read OPENAI_API_KEY
 
-if is_valid_sk_key $OPENAI_API_KEY || [ -z "$OPENAI_API_KEY" ]; then
-  echo "Valid API key"
-else
-  echo "Invalid API key. Please ensure that you have billing set up on your OpenAI account"
-  exit
-fi
+echo -n "Enter your OPENAI_API_URL (eg: https://api.openai.com/v1): "
+read OPENAI_API_URL
+
+#if is_valid_sk_key $OPENAI_API_KEY || [ -z "$OPENAI_API_KEY" ]; then
+#  echo "Valid API key"
+#else
+#  echo "Invalid API key. Please ensure that you have billing set up on your OpenAI account"
+#  exit
+#fi
 
 NEXTAUTH_SECRET=$(openssl rand -base64 32)
 
@@ -23,6 +26,7 @@ ENV="NODE_ENV=development\n\
 NEXTAUTH_SECRET=$NEXTAUTH_SECRET\n\
 NEXTAUTH_URL=http://localhost:3000\n\
 OPENAI_API_KEY=$OPENAI_API_KEY\n\
+OPENAI_API_URL=$OPENAI_API_URL\n\
 DATABASE_URL=file:../db/db.sqlite\n"
 
 printf $ENV > .env
