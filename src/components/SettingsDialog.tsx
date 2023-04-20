@@ -51,14 +51,14 @@ export default function SettingsDialog({
   }
 
   const handleSave = () => {
-    if (is_valid_key(key)) {
+    // if (is_valid_key(key)) {
       setCustomApiKey(key);
       close();
-    } else {
-      alert(
-        "key is invalid, please ensure that you have set up billing in your OpenAI account"
-      );
-    }
+    // } else {
+    //   alert(
+    //     "key is invalid, please ensure that you have set up billing in your OpenAI account"
+    //   );
+    // }
   };
 
   React.useEffect(() => {
@@ -103,7 +103,6 @@ export default function SettingsDialog({
           </>
         }
         value={customMaxLoops}
-        disabled={!key}
         onChange={(e) => setCustomMaxLoops(parseFloat(e.target.value))}
         type="range"
         toolTipProperties={{
@@ -170,17 +169,18 @@ export default function SettingsDialog({
           attributes={{ options: GPT_MODEL_NAMES }}
         />
         <br className="hidden md:inline" />
-        <Input
-          left={
-            <>
-              <FaKey />
-              <span className="ml-2">Key: </span>
-            </>
-          }
-          placeholder={"sk-..."}
-          value={key}
-          onChange={(e) => setKey(e.target.value)}
-        />
+        {/*<Input*/}
+        {/*  left={*/}
+        {/*    <>*/}
+        {/*      <FaKey />*/}
+        {/*      <span className="ml-2">Key: </span>*/}
+        {/*    </>*/}
+        {/*  }*/}
+        {/*  disabled={true}*/}
+        {/*  placeholder={"sk-..."}*/}
+        {/*  value={key}*/}
+        {/*  onChange={(e) => setKey(e.target.value)}*/}
+        {/*/>*/}
         <br className="md:inline" />
         <Accordion
           child={advancedSettings}
