@@ -1,7 +1,7 @@
 import WindowButton from "../WindowButton";
 import { FaFilePdf, FaRegFilePdf, FaSave } from "react-icons/fa";
 import { pdf } from "@react-pdf/renderer";
-import React from "react";
+import React, {useRef} from "react";
 import MyDocument from "./MyDocument";
 import type { Message } from "../../types/agentTypes";
 
@@ -18,6 +18,8 @@ const PDFButton = ({ messages }: { messages: Message[] }) => {
     URL.revokeObjectURL(url);
   };
 
+  const pdfDownloadParagraph = useRef<HTMLParagraphElement>(null);
+
   return (
     <>
       <WindowButton
@@ -27,7 +29,7 @@ const PDFButton = ({ messages }: { messages: Message[] }) => {
         }}
         icon={<FaFilePdf size={12} />}
         text={"PDF"}
-      />
+       paragraph={pdfDownloadParagraph}/>
     </>
   );
 };
